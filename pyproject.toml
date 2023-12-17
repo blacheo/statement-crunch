@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "statement_crunch"
+version = "0.1.0"
+description = ""
+authors = ["brandon <blaicheo@uwaterloo.ca>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pypdf = "^3.17.2"
+streamlit = "^1.29.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
