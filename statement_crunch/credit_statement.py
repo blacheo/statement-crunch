@@ -61,7 +61,15 @@ class AbstractStatement(ABC):
 
         return int(year.group(0))
     @staticmethod
-    def categorize(line: str):
+    def categorize(line: str) -> Entry:
+        """Parses a string into an Entry
+
+        Args:
+            line: A string describing a payment/credit
+
+        Returns:
+            An Entry describing the payment/credit
+        """
         raise NotImplementedError
 
     @staticmethod
@@ -70,6 +78,14 @@ class AbstractStatement(ABC):
 
     @classmethod
     def get_entries(cls, pdf) -> List[Entry]:
+        """Creates a list of entries from a credit card statement
+
+        Args:
+            pdf: The credit card statement in pdf format
+
+        Returns:
+            A list of entries containing information about payments
+        """
         reader = PdfReader(pdf)
         year = cls.get_year(reader.pages[0])
 
