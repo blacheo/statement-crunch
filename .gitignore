@@ -1,4 +1,5 @@
 /.pytest_cache
 /.venv
 /.vscode
-/statements
+/statements/**
+**/__pycache__/
