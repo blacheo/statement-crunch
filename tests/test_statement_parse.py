@@ -1,3 +1,4 @@
+import os
 from typing import List
 from pypdf import PdfReader
 import pytest
@@ -8,6 +9,7 @@ from statement_crunch.statement_types.bmo_statement import BmoStatement
 
 STATEMENT_PATHS = ["statements/December 21, 2021.pdf", "statements/November 21, 2023.pdf"]
 
+@pytest.mark.skipif(not os.path.exists("/statements"), reason="requires statements to exist")
 @pytest.mark.parametrize("pdf, expected_date", zip(STATEMENT_PATHS, [2021, 2023]))
 def test_get_year(pdf, expected_date):
     reader = PdfReader(pdf)
@@ -22,11 +24,13 @@ def test_filter_for_entries():
 
     assert list(filter(BmoStatement.is_entry_line, lines_to_test)) == expected_entries
 
+@pytest.mark.skipif(not os.path.exists("/statements"), reason="requires statements to exist")
 @pytest.mark.parametrize("pdf_path, expected_entries", zip(STATEMENT_PATHS, [[], []]))
 def test_get_entries(pdf_path, expected_entries):
     entries = BmoStatement.get_entries(pdf_path)
     assert entries == expected_entries
 
+@pytest.mark.skipif(not os.path.exists("/statements"), reason="requires statements to exist")
 @pytest.mark.parametrize("pdf_path", STATEMENT_PATHS)
 def test_generate_csv(pdf_path):
     save_csv(BmoStatement.get_entries(pdf_path), f"output/{pdf_path}")
