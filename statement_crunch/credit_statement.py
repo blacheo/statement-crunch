@@ -1,5 +1,4 @@
 from abc import ABC
-import csv
 from typing import List
 from pypdf import PdfReader
 import re
@@ -98,12 +97,4 @@ class AbstractStatement(ABC):
 
         return [cls.categorize(line, year) for line in lines]
 
-    def save_csv(entries: List[Entry], path: str = None):
-        """Saves entries to a csv file.
-
-        Args:
-            entries (List[Entry]): _description_
-            path (str, optional): _description_. Defaults to None.
-        """
-        csv.writer()
-        pass
+    

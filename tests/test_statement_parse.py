@@ -1,6 +1,7 @@
 from typing import List
 from pypdf import PdfReader
 import pytest
+from statement_crunch.entry import save_csv
 
 from statement_crunch.statement_types.bmo_statement import BmoStatement
 
@@ -25,3 +26,7 @@ def test_filter_for_entries():
 def test_get_entries(pdf_path, expected_entries):
     entries = BmoStatement.get_entries(pdf_path)
     assert entries == expected_entries
+
+@pytest.mark.parametrize("pdf_path", STATEMENT_PATHS)
+def test_generate_csv(pdf_path):
+    save_csv(BmoStatement.get_entries(pdf_path), f"output/{pdf_path}")

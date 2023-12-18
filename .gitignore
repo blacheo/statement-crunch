@@ -3,3 +3,4 @@
 /.vscode
 /statements/**
 **/__pycache__/
+/output

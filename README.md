@@ -1,0 +1,1 @@
+Note: For privacy reasons test resources don't include actual credit card statements.
